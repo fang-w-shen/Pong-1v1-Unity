@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour {
     private bool gameOver = false;
     private bool restart = false;
     private bool outOfBounds = false;
+    private float height = 4;
 
     private float velocity;
     private float speed = 6f;
@@ -60,6 +61,12 @@ public class GameManager : MonoBehaviour {
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 ball.velocity = new Vector3(0, player1Paddle.velocity.y, 0);
+                ball.position = new Vector3
+                (
+                    ball.position.x,
+                    Mathf.Clamp(ball.position.y, -height, height),
+                    0.0f
+                );
             }
             else if (Input.GetKeyUp(KeyCode.RightArrow))
             {
@@ -80,6 +87,12 @@ public class GameManager : MonoBehaviour {
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 ball.velocity = new Vector3(0, player2Paddle.velocity.y, 0);
+                ball.position = new Vector3
+                (
+                    ball.position.x,
+                    Mathf.Clamp(ball.position.y, -height, height),
+                    0.0f
+                );
             }
             else if (Input.GetKeyUp(KeyCode.LeftShift))
             {
