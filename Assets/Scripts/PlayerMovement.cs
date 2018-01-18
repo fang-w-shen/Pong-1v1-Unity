@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
     public float height = 3;
     public Rigidbody rb;
     public string axis = "Vertical";
+    /// <summary>
+    /// Clamping paddles to gamefield area
+    /// </summary>
     void FixedUpdate()
     {
         float velocity = Input.GetAxisRaw(axis);

@@ -12,12 +12,12 @@ public class MenuController : MonoBehaviour
     public GameObject mainMenuUI;
     public GameObject settingsMenuUI;
     public GameObject gameArea;
-
     private OptionsMenu optionsMenu;
 
-    // Update is called once per frame
+    
     void Update()
     {
+
         if (GameIsStarted && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)))
         {
             if (GameIsPaused == true)
@@ -30,6 +30,9 @@ public class MenuController : MonoBehaviour
             }
         }
     }
+    /// <summary>
+    /// Starts GameBoard Canvas Render and GamePlay
+    /// </summary>
     public void StartGame()
     {
         mainMenuUI.SetActive(false);
@@ -37,12 +40,18 @@ public class MenuController : MonoBehaviour
         gameArea.SetActive(true);
         FindObjectOfType<GameManager>().PlayBall();
     }
+    /// <summary>
+    /// Pauses all animation events and provides menu for options
+    /// </summary>
     void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
+    /// <summary>
+    /// Resumes all animation events and gameplay
+    /// </summary>
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
@@ -50,7 +59,9 @@ public class MenuController : MonoBehaviour
         GameIsPaused = false;
     }
 
-
+    /// <summary>
+    /// Loads main menu without reloading scene (to keep volume the same)
+    /// </summary>
     public void LoadMenu()
     {
         pauseMenuUI.SetActive(false);
@@ -61,16 +72,25 @@ public class MenuController : MonoBehaviour
         GameIsStarted = false;
         FindObjectOfType<GameManager>().EndGame();
     }
+    /// <summary>
+    /// Loads settings to change volume, resolution, graphics, fullScreen
+    /// </summary>
     public void LoadSettings()
     {
         mainMenuUI.SetActive(false);
         settingsMenuUI.SetActive(true);
     }
+    /// <summary>
+    /// Backs out of settings to main menu
+    /// </summary>
     public void Back()
     {
         mainMenuUI.SetActive(true);
         settingsMenuUI.SetActive(false);
     }
+    /// <summary>
+    /// Quits application (does not work for WEB-builds)
+    /// </summary>
     public void Quit()
     {
         Application.Quit();
